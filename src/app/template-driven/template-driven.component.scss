@@ -1,0 +1,27 @@
+.form-section {
+  margin-top: 150px;
+  .card {
+    width: 450px;
+    margin: 0 auto;
+    &-title {
+      text-align: center;
+    }
+    input {
+      height: 50px;
+      font-size: 17px;
+    }
+    input.ng-touched.ng-invalid {
+      border: solid red 2px;
+    }
+    input.ng-touched.ng-valid {
+      border: solid green 2px;
+    }
+    .btn {
+      display: block;
+      margin: 0 auto;
+      width: 120px;
+      background: #343a40;
+      border-color: #343a40;
+    }
+  }
+}

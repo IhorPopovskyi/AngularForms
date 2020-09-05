@@ -1,0 +1,39 @@
+.form-section {
+  margin-top: 150px;
+  .card {
+    width: 450px;
+    margin: 0 auto;
+    &-title {
+      text-align: center;
+    }
+    input {
+      height: 50px;
+      font-size: 17px;
+    }
+    input.ng-touched.ng-invalid {
+      border: solid red 2px;
+    }
+    input.ng-touched.ng-valid {
+      border: solid green 2px;
+    }
+
+    .emails-wrapper {
+      margin-top: 10px;
+    }
+
+    .input-wrap {
+      display: flex;
+      align-items: center;
+      .btn-danger {
+        height: 50px;
+      }
+    }
+
+    .btn-dark {
+      display: block;
+      margin: 0 auto;
+      width: 120px;
+      outline: none;
+    }
+  }
+}

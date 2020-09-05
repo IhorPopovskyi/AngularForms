@@ -1,0 +1,156 @@
+<div class="form-section">
+  <div class="container">
+    <div class="row">
+      <div class="col col-8 mx-auto">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Sign up</h5>
+            <form [formGroup]="reactiveForm" (ngSubmit)="submit()">
+              <input
+                type="text"
+                name="username"
+                class="form-control mt-4"
+                placeholder="Create your username"
+                formControlName="username"
+              />
+              <div
+                class="validation alert alert-danger"
+                *ngIf="
+                  reactiveForm.get('username').invalid &&
+                  reactiveForm.get('username').touched
+                "
+              >
+                <small *ngIf="reactiveForm.get('username').errors.required"
+                  >Field cannot be empty</small
+                >
+                <small *ngIf="reactiveForm.get('username').errors.minlength"
+                  >Username length cannot be less than:
+                  {{
+                    reactiveForm.get("username").errors.minlength.requiredLength
+                  }}
+                  <br />
+                  Now username length is:
+                  {{
+                    reactiveForm.get("username").errors.minlength.actualLength
+                  }}</small
+                >
+              </div>
+
+              <input
+                type="password"
+                name="password"
+                class="form-control mt-4"
+                placeholder="Create your password"
+                formControlName="password"
+              />
+              <div
+                class="validation alert alert-danger"
+                *ngIf="
+                  reactiveForm.get('password').invalid &&
+                  reactiveForm.get('password').touched
+                "
+              >
+                <small *ngIf="reactiveForm.get('password').errors.required"
+                  >Field cannot be empty</small
+                >
+                <small *ngIf="reactiveForm.get('password').errors.minlength"
+                  >Password length cannot be less than:
+                  {{
+                    reactiveForm.get("password").errors.minlength
+                      .requiredLength
+                  }}. <br />
+                  Now password length is:
+                  {{
+                    reactiveForm.get("password").errors.minlength.actualLength
+                  }}</small
+                >
+                <small
+                  *ngIf="
+                    reactiveForm.get('password').errors.passwordCustomValidator
+                  "
+                  >Password must have numbers and letters</small
+                >
+              </div>
+
+              <input
+                type="email"
+                name="email"
+                class="form-control mt-4"
+                placeholder="Enter your email"
+                formControlName="email"
+              />
+              <div
+                class="validation alert alert-danger"
+                *ngIf="
+                  reactiveForm.get('email').invalid &&
+                  reactiveForm.get('email').touched
+                "
+              >
+                <small *ngIf="reactiveForm.get('email').errors.required"
+                  >Field cannot be empty</small
+                >
+                <small *ngIf="reactiveForm.get('email').errors.email"
+                  >Enter valid email</small
+                >
+
+                <small *ngIf="reactiveForm.get('email').errors.restrictedEmail"
+                  >This email is used by another user</small
+                >
+              </div>
+
+              <div class="emails-wrapper" formArrayName="emails">
+                <div
+                  *ngFor="
+                    let control of emailFormArray.controls;
+                    let idx = index
+                  "
+                >
+                  <label>Email: {{ idx + 2 }}</label>
+                  <div class="input-wrap">
+                    <input
+                      class="form-control"
+                      type="email"
+                      [formControlName]="idx"
+                    />
+                    <button class="btn btn-danger" (click)="removeEmails()">
+                      Del
+                    </button>
+                  </div>
+                  <div
+                    class="validation alert alert-danger"
+                    *ngIf="
+                      emailFormArray.controls[idx].invalid &&
+                      emailFormArray.controls[idx].touched
+                    "
+                  >
+                    <small *ngIf="emailFormArray.controls[idx].errors.required"
+                      >Field cannot be empty</small
+                    >
+                    <small *ngIf="emailFormArray.controls[idx].errors.email"
+                      >Enter valid email</small
+                    >
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-dark mt-4"
+                  (click)="addEmail()"
+                >
+                  Add Email
+                </button>
+              </div>
+
+              <button
+                type="submit"
+                class="btn btn-dark mt-4"
+                [disabled]="reactiveForm.invalid"
+              >
+                Sign up
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
