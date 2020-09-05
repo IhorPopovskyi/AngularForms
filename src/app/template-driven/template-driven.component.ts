@@ -12,7 +12,6 @@ export class TemplateDrivenComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(drivenForm: NgForm) {
-    console.log(drivenForm.value);
     drivenForm.reset();
   }
 }
